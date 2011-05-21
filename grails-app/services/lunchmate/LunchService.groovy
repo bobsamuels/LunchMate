@@ -8,7 +8,7 @@ class LunchService {
     static transactional = true
     static final dateFormat = "MM/dd/yyyy"
     def restaurantService
-    def userService
+    def springSecurityService
 
     static final DateFormat sdf = new SimpleDateFormat(dateFormat)
 

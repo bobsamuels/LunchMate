@@ -12,9 +12,15 @@ class BootStrap {
 
     def init = { servletContext ->
 
-      def user = new User(username: 'twakeen', password: 'password', enabled: true, email: 'tom.wakeen@gmail.com').save()
-      def user2 = new User(username: 'bsamuels', password:'password', enabled: true, email: 'bsamuels@widen.com').save()
-      def admin = new User(username: 'admin', password: 'password', enabled: true, email: 'samu0030@gmail.com').save()
+  def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+  def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+
+  String password = springSecurityService.encodePassword('password')
+  def user = new User(username: 'twakeen', password: password, enabled: true, email: 'tom.wakeen@gmail.com').save(flush:true)
+  def user2 = new User(username: 'bsamuels', password:password, enabled: true, email: 'bsamuels@widen.com').save(flush:true)
+
+    UserRole.create user, userRole, true
+    UserRole.create user2, userRole, true
 
 
       Restaurant res1 = new Restaurant(name:"Noodles", url:"http://www.noodles.com").save()

@@ -1,10 +1,16 @@
+
 package lunchmate
+
+import grails.plugins.springsecurity.Secured
+
+
 
 class LunchController {
 
     def lunchService
     def userService
 
+    @Secured(['USER_ROLE'])
     def index = {
       [upcomingLunches:lunchService.findUpcomingLunches()]
 
