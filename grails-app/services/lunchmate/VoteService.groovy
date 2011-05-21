@@ -3,7 +3,7 @@ package lunchmate
 class VoteService {
 
     static transactional = true
-    def userService
+    def springSecurityService
 
     int getNumberOfVotes(Restaurant restaurant, Lunch lunch)
     {
@@ -13,7 +13,7 @@ class VoteService {
 
     Restaurant getVotedFor(Lunch lunch)
     {
-      Vote vote = lunch.votes.find{it.user.equals(userService.currentUser)}
+      Vote vote = lunch.votes.find{it.user.equals(springSecurityService.currentUser)}
       vote?.restaurant
     }
 }

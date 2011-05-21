@@ -6,7 +6,7 @@ class RestaurantService {
 
     static transactional = true
     def voteService
-    def userService
+    def springSecurityService
 
     def getAverageRating(Restaurant restaurant) {
       List<Rating> ratings = Rating.findAllByRestaurant(restaurant)
@@ -105,12 +105,12 @@ class RestaurantService {
 
      Rating getRatingForUser(Restaurant _restaurant)
      {
-       _restaurant.ratings.find{it.user.equals(userService.currentUser)}
+       _restaurant.ratings.find{it.user.equals(springSecurityService.currentUser)}
      }
 
     Comment getCommentForUser(Restaurant _restaurant)
      {
-       _restaurant.comments.find{it.user.equals(userService.currentUser)}
+       _restaurant.comments.find{it.user.equals(springSecurityService.currentUser)}
      }
 
     private class RestaurantRating

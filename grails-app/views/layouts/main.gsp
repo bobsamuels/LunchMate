@@ -16,9 +16,12 @@
             <div style="padding-left:8px;float:left;">
                 <img src="${resource(dir:'images', file:'lunchmate.jpg')}" height="94px" width="125px" alt="LunchMate"/>
             </div>
+            <sec:ifLoggedIn>
             <div style="float:right; padding:8px; border: 1px solid #ccc;">
-                    Welcome Back twakeen! <g:link controller="logout">logout</g:link>
+                        Welcome Back <sec:loggedInUserInfo field="username"/>!
+                        <g:link controller="logout">logout</g:link>
             </div>
+            </sec:ifLoggedIn>
         </div>
         <BR style="clear:both;"/>
         <div styel="padding:8px;">
